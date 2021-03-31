@@ -1,14 +1,20 @@
 class Dice
-  attr_reader :sides
+  attr_reader :sides, :last_roll
 
   def initialize(sides = 6)
     @sides = sides
-    @roll = roll
+    @last_roll = []
   end
 
   def roll(number_of_rolls = 1)
-    roll = 0 # accumulator
-    number_of_rolls.times { roll += rand(1..sides) }
-    roll
+    rolls = []
+    number_of_rolls.times do
+      rolls << rand(1..sides)
+    end
+    self.last_roll = rolls
   end
+
+  private
+
+  attr_writer :last_roll
 end
