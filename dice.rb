@@ -37,6 +37,14 @@ class Dice
     last_roll
   end
 
+  def to_s
+    text = ""
+    last_roll.each_with_index do |dice_roll, i|
+      text += "Dice ##{i + 1}: #{dice_roll} \u2016 "
+    end
+    text
+  end
+
   private
 
   attr_writer :last_roll
