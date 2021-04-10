@@ -20,11 +20,9 @@ rerolls = []
 
   loop do
     puts "[0] Reroll all the dice." if rerolls.empty?
-    puts "[1] Reroll the first dice (#{dice.last_roll[0]})." unless rerolls.include? 0
-    puts "[2] Reroll the second dice (#{dice.last_roll[1]})" unless rerolls.include? 1
-    puts "[3] Reroll the third dice (#{dice.last_roll[2]})" unless rerolls.include? 2
-    puts "[4] Reroll the fourth dice (#{dice.last_roll[3]})" unless rerolls.include? 3
-    puts "[5] Reroll the fifth dice (#{dice.last_roll[4]})" unless rerolls.include? 4
+    5.times do |i|
+      puts "[#{i + 1}] Reroll dice ##{i + 1} (#{dice.last_roll[i]})." unless rerolls.include? i
+    end
     puts "[6] Continue game"
     print "Enter your choice: "
     choice = gets[0].to_i - 1
