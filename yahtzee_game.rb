@@ -11,25 +11,24 @@ gets
 dice = Dice.new
 dice.roll(5)
 
-rerolls = []
 2.times do
+  rerolls = []
   show_rolls(dice)
   print "Would you like to reroll or keep them? [Y/N]: "
 
   break unless gets.upcase[0] == "Y"
 
   loop do
-    if rerolls.count < 5
-      puts "[0] Reroll all the dice." if rerolls.empty?
-      5.times do |i|
-        puts "[#{i + 1}] Reroll dice ##{i + 1} (#{dice.last_roll[i]})." unless rerolls.include? i
-      end
-      puts "[6] Continue game"
-      print "Enter your choice: "
-      choice = gets[0].to_i - 1
-    else
-      choice = 6
+    break if rerolls.count == 5
+
+    puts "[0] Reroll all the dice." if rerolls.empty?
+    5.times do |i|
+      puts "[#{i + 1}] Reroll dice ##{i + 1} (#{dice.last_roll[i]})." unless rerolls.include? i
     end
+    puts "[6] Continue game"
+    print "Enter your choice: "
+    choice = gets[0].to_i - 1
+    
     if choice == -1
       dice.reroll
       rerolls = [0, 1, 2, 3, 4]
