@@ -1,3 +1,5 @@
+require "set"
+
 module YahtzeeHelper
   def show_rolls(dice, message = "You rolled:")
     puts "#{message} #{dice}\n"
@@ -13,7 +15,7 @@ module YahtzeeHelper
 
   def reroll_dice(dice)
     2.times do
-      rerolls = []
+      rerolls = Set[]
       show_rolls(dice)
       print "Would you like to reroll or keep them? [Y/N]: "
 
@@ -29,8 +31,8 @@ module YahtzeeHelper
         puts "[6] Continue game"
         print "Enter your choice: "
         choice = gets[0].to_i - 1
-
         if choice == -1
+          puts "Rerolling all dice.."
           dice.reroll
           rerolls = [0, 1, 2, 3, 4]
         elsif (0..4).include?(choice)
