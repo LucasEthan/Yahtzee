@@ -36,6 +36,11 @@ module YahtzeeHelper
           dice.reroll
           rerolls = [0, 1, 2, 3, 4]
         elsif (0..4).include?(choice)
+          if rerolls.include?(choice)
+            puts "You can't reroll the same dice two or more times, try again."
+            next
+          end
+
           puts "Dice ##{choice + 1} (#{dice.last_roll[choice]}) has been rerolled to #{dice.reroll(choice)[choice]}"
           rerolls << choice
         end
