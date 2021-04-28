@@ -36,12 +36,21 @@ class Yahtzee
 
     # Lower section
     def three_of_a_kind(rolls)
+      return 0 unless same_dice?(rolls, 3)
+
+      rolls.sum
     end
 
     def four_of_a_kind(rolls)
+      return 0 unless same_dice?(rolls, 4)
+
+      rolls.sum
     end
 
     def full_house(rolls)
+      return 0 unless same_dice?(rolls, 3) && same_dice?(rolls, 2)
+
+      25
     end
 
     def small_straight
@@ -51,10 +60,24 @@ class Yahtzee
     end
 
     def yahtzee(rolls)
+      return 0 unless same_dice?(rolls, 5)
+
+      50
     end
 
     def chance(rolls)
+      rolls.sum
     end
+
+    private
+
+    def same_dice?(rolls, num_same_dice)
+      rolls.each do |roll|
+        return true if rolls.count(roll) == num_same_dice
+      end
+      false
+    end
+  end
 
   def score
     upper_sect_score + lower_sect_score
