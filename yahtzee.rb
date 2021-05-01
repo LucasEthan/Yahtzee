@@ -53,10 +53,16 @@ class Yahtzee
       25
     end
 
-    def small_straight
+    def small_straight(rolls)
+      return 0 unless consecutive_dice?(rolls, 4)
+
+      30
     end
 
-    def large_straight
+    def large_straight(rolls)
+      return 0 unless consecutive_dice?(rolls)
+
+      40
     end
 
     def yahtzee(rolls)
@@ -76,6 +82,10 @@ class Yahtzee
         return true if rolls.count(roll) == num_same_dice
       end
       false
+    end
+
+    def consecutive_dice?(rolls, num_consecutive = 5)
+      rolls[0...num_consecutive].each_cons(2).to_a.all? { |a, b| a + 1 == b }
     end
   end
 
