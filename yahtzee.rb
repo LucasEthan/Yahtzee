@@ -78,9 +78,8 @@ class Yahtzee
     private
 
     def same_dice?(rolls, num_same_dice)
-      rolls.each do |roll|
-        return true if rolls.count(roll) == num_same_dice
-      end
+      rolls.each { |roll| return true if rolls.count(roll) == num_same_dice }
+
       false
     end
 
