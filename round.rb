@@ -28,8 +28,10 @@ class Round
   end
 
   def upper_section?
+    UPPER_SECTION.include?(category)
   end
 
   def lower_section?
+    !upper_section?
   end
 end
