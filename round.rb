@@ -1,6 +1,9 @@
 class Round
   attr_reader :category, :rolls
 
+  UPPER_SECTION = [:ones, :twos, :threes, :fours, :fives, :sixes]
+  LOWER_SECTION = [:three_of_a_kind, :four_of_a_kind, :full_house, :small_straight, :large_straight, :yahtzee, :chance]
+
   CATEGORIES = {
     # Upper section
     ones: "ones",
@@ -25,5 +28,8 @@ class Round
   end
 
   def upper_section?
+  end
+
+  def lower_section?
   end
 end
