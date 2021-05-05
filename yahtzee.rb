@@ -1,6 +1,7 @@
+require_relative "round.rb"
+
 class Yahtzee
   attr_accessor :rounds
-  attr_reader :upper_sect_score, :lower_sect_score
 
   def initialize
     @upper_sect_score = 0
@@ -86,6 +87,16 @@ class Yahtzee
     def consecutive_dice?(rolls, num_consecutive = 5)
       rolls[0...num_consecutive].each_cons(2).to_a.all? { |a, b| a + 1 == b }
     end
+  end
+
+  def upper_sect_score
+    s = 0
+    rounds.select(&:upper_section?).each { |round| s += round.score }
+  end
+
+  def lower_sect_score
+    s = 0
+    rounds.select(&:lower_section?).each { |round| s += round.score }
   end
 
   def score

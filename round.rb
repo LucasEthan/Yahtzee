@@ -1,5 +1,5 @@
 class Round
-  attr_reader :category, :rolls
+  attr_reader :category, :rolls, :score
 
   UPPER_SECTION = [:ones, :twos, :threes, :fours, :fives, :sixes]
   LOWER_SECTION = [:three_of_a_kind, :four_of_a_kind, :full_house, :small_straight, :large_straight, :yahtzee, :chance]
@@ -25,6 +25,7 @@ class Round
   def initialize(category, rolls)
     @category = category
     @rolls = rolls
+    @score = round_score
   end
 
   def upper_section?
@@ -33,5 +34,11 @@ class Round
 
   def lower_section?
     !upper_section?
+  end
+
+  private
+
+  def round_score
+    ::Yahtzee.__send__(category, rolls)
   end
 end
