@@ -36,6 +36,14 @@ class Round
     !upper_section?
   end
 
+  def +(other)
+    score + other.score
+  end
+
+  def to_i
+    score
+  end
+
   private
 
   def round_score
